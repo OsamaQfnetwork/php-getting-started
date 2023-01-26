@@ -29,4 +29,4 @@
 //
 //$app->run();
 
-print_r('609978197');
+print_r($_GET['hub_challenge']);
