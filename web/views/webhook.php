@@ -1,2 +1,2 @@
 <?php
-echo 'hi';
+print_r('dsa');
