@@ -1,8 +1,8 @@
 <?php
 
 require('../vendor/autoload.php');
-//$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-//$dotenv->load();
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 //
 //$app = new Silex\Application();
 //$app['debug'] = true;
@@ -64,7 +64,11 @@ $password = $url["pass"];
 $db = substr($url["path"], 1);
 
 $conn = new mysqli($server, $username, $password, $db);
-print_r($conn);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 $json = file_get_contents('php://input');
 $action = json_decode($json, true);
 
@@ -80,14 +84,5 @@ VALUES ('$textMessage', '$json')";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-}
-
-$sql = "INSERT INTO webhook_data (data, data_array)
-VALUES ('TestData', 'TestData')";
-
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
