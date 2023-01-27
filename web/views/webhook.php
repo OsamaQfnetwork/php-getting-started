@@ -1,4 +1,5 @@
 <?php
+print_r('test');
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -19,7 +20,7 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 
 curl_close($curl);
-echo $response;
+print_r($response);
 
 //Webhook Data
 
