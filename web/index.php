@@ -42,11 +42,9 @@
 //if ($conn->connect_error) {
 //    die("Connection failed: " . $conn->connect_error);
 //}
+$json = file_get_contents('php://input');
+$action = json_decode($json, true);
 if (isset($action['data']['messages'][0]['message']['extendedTextMessage']['text'])) {
-    $json = file_get_contents('php://input');
-    $action = json_decode($json, true);
-
-
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
