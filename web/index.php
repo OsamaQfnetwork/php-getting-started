@@ -64,7 +64,7 @@ $password = $url["pass"];
 $db = substr($url["path"], 1);
 
 $conn = new mysqli($server, $username, $password, $db);
-
+print_r($conn);
 $json = file_get_contents('php://input');
 $action = json_decode($json, true);
 
